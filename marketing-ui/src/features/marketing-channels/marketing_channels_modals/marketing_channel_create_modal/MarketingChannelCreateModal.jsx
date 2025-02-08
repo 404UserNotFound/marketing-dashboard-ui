@@ -22,7 +22,7 @@ export default function MarketingChannelCreateModal(props) {
             onClose={closeModal}
         >
             <div>
-                <Typography>Create New Channel:</Typography>
+                <Typography>Create New Channel</Typography>
                 <TextField
                     label={"Name"}
                     required

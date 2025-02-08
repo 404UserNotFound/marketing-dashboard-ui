@@ -28,10 +28,10 @@ export default function MarketingChannelUpdateModal(props) {
             onClose={closeModal}
         >
             <div>
-                <Typography>Name:</Typography>
+                <Typography>Update Channel</Typography>
                 <TextField
+                    label={"Name"}
                     placeholder={name}
-                    // onChange={(e) => {setNewChannelValue({name:e.target.value})}}
                     onChange={(e) => setNewChannelValue(prev => ({
                         ...prev, name: e.target.value
                     }))}
