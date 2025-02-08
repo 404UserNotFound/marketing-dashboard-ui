@@ -10,7 +10,7 @@ export default function MarketingCampaignsList() {
 
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const dispatch = useDispatch();
-    const { campaignList, requestStatus, error } = useSelector((state) => state.campaign);
+    const { campaignList, campaignRequestStatus, campaignError } = useSelector((state) => state.campaign);
 
     const refreshList = () => {
         dispatch(fetchCampaigns());
@@ -20,8 +20,8 @@ export default function MarketingCampaignsList() {
         dispatch(fetchCampaigns());
     }, [dispatch]);
 
-    if (requestStatus === "loading") return <p>Loading...</p>;
-    if (requestStatus === "failed") return <p>Error: {error}</p>;
+    if (campaignRequestStatus === "loading") return <p>Loading...</p>;
+    if (campaignRequestStatus === "failed") return <p>Error: {campaignError}</p>;
 
     return (<>
         {campaignList.map((campaign) => (<MarketingCampaignsListItem

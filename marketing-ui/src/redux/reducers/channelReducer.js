@@ -5,60 +5,60 @@ const channelReducer = createSlice({
     name: "channel",
     initialState: {
         channelList: [],
-        status: "",
-        error: null,
+        channelRequestStatus: "",
+        channelError: null,
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             //Get
             .addCase(fetchChannels.pending, (state) => {
-                state.requestStatus = "loading";
+                state.channelRequestStatus = "loading";
             })
             .addCase(fetchChannels.fulfilled, (state, action) => {
-                state.requestStatus = "succeeded";
+                state.channelRequestStatus = "succeeded";
                 state.channelList = action.payload;
             })
             .addCase(fetchChannels.rejected, (state, action) => {
-                state.requestStatus = "failed";
-                state.error = action.error.message;
+                state.channelRequestStatus = "failed";
+                state.channelError = action.error.message;
             })
 
             //Delete
             .addCase(deleteChannel.fulfilled, (state) => {
-                state.requestStatus= "succeeded"
+                state.channelRequestStatus= "succeeded"
             })
             .addCase(deleteChannel.pending, (state) => {
-                state.requestStatus= "loading"
+                state.channelRequestStatus= "loading"
             })
             .addCase(deleteChannel.rejected, (state, action) => {
-                state.requestStatus= "failed"
-                state.error = action.error.message;
+                state.channelRequestStatus= "failed"
+                state.channelError = action.error.message;
             })
 
 
             //Update
             .addCase(updateChannel.fulfilled, (state) => {
-                state.requestStatus= "succeeded"
+                state.channelRequestStatus= "succeeded"
             })
             .addCase(updateChannel.pending, (state) => {
-                state.requestStatus= "loading"
+                state.channelRequestStatus= "loading"
             })
             .addCase(updateChannel.rejected, (state, action) => {
-                state.requestStatus= "failed"
-                state.error = action.error.message;
+                state.channelRequestStatus= "failed"
+                state.channelError = action.error.message;
             })
 
             //Create
             .addCase(createChannel.fulfilled, (state) => {
-                state.requestStatus= "succeeded"
+                state.channelRequestStatus= "succeeded"
             })
             .addCase(createChannel.pending, (state) => {
-                state.requestStatus= "loading"
+                state.channelRequestStatus= "loading"
             })
             .addCase(createChannel.rejected, (state, action) => {
-                state.requestStatus= "failed"
-                state.error = action.error.message;
+                state.channelRequestStatus= "failed"
+                state.channelError = action.error.message;
             })
 
     },

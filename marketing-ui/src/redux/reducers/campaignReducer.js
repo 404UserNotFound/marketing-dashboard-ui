@@ -5,60 +5,60 @@ const campaignReducer = createSlice({
     name: "campaign",
     initialState: {
         campaignList: [],
-        status: "",
-        error: null,
+        campaignRequestStatus: "",
+        campaignError: null,
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             //Get
             .addCase(fetchCampaigns.pending, (state) => {
-                state.requestStatus = "loading";
+                state.campaignRequestStatus = "loading";
             })
             .addCase(fetchCampaigns.fulfilled, (state, action) => {
-                state.requestStatus = "succeeded";
+                state.campaignRequestStatus = "succeeded";
                 state.campaignList = action.payload;
             })
             .addCase(fetchCampaigns.rejected, (state, action) => {
-                state.requestStatus = "failed";
-                state.error = action.error.message;
+                state.campaignRequestStatus = "failed";
+                state.campaignError = action.error.message;
             })
 
             //Delete
             .addCase(deleteCampaign.fulfilled, (state) => {
-                state.requestStatus= "succeeded"
+                state.campaignRequestStatus= "succeeded"
             })
             .addCase(deleteCampaign.pending, (state) => {
-                state.requestStatus= "loading"
+                state.campaignRequestStatus= "loading"
             })
             .addCase(deleteCampaign.rejected, (state, action) => {
-                state.requestStatus= "failed"
-                state.error = action.error.message;
+                state.campaignRequestStatus= "failed"
+                state.campaignError = action.error.message;
             })
 
 
             //Update
             .addCase(updateCampaign.fulfilled, (state) => {
-                state.requestStatus= "succeeded"
+                state.campaignRequestStatus= "succeeded"
             })
             .addCase(updateCampaign.pending, (state) => {
-                state.requestStatus= "loading"
+                state.campaignRequestStatus= "loading"
             })
             .addCase(updateCampaign.rejected, (state, action) => {
-                state.requestStatus= "failed"
-                state.error = action.error.message;
+                state.campaignRequestStatus= "failed"
+                state.campaignError = action.error.message;
             })
 
             //Create
             .addCase(createCampaign.fulfilled, (state) => {
-                state.requestStatus= "succeeded"
+                state.campaignRequestStatus= "succeeded"
             })
             .addCase(createCampaign.pending, (state) => {
-                state.requestStatus= "loading"
+                state.campaignRequestStatus= "loading"
             })
             .addCase(createCampaign.rejected, (state, action) => {
-                state.requestStatus= "failed"
-                state.error = action.error.message;
+                state.campaignRequestStatus= "failed"
+                state.campaignError = action.error.message;
             })
 
     },

@@ -8,7 +8,7 @@ import {fetchChannels} from "../../../redux/thunks/channelThunks.js";
 export default function MarketingChannelsList() {
     const [openCreateModal, setOpenCreateModal] = useState(false);
     const dispatch = useDispatch();
-    const { channelList, requestStatus, error } = useSelector((state) => state.channel);
+    const { channelList, channelRequestStatus, channelError } = useSelector((state) => state.channel);
     const refreshList = () => {
         dispatch(fetchChannels());
     };
@@ -18,8 +18,8 @@ export default function MarketingChannelsList() {
     }, [dispatch]);
 
 
-    if (requestStatus === "loading") return <p>Loading...</p>;
-    if (requestStatus === "failed") return <p>Error: {error}</p>;
+    if (channelRequestStatus === "loading") return <p>Loading...</p>;
+    if (channelRequestStatus === "failed") return <p>Error: {channelError}</p>;
 
     return (<>
         {channelList.map((item) => (
