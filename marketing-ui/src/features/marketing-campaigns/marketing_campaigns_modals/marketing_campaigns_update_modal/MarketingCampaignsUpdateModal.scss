@@ -1,0 +1,15 @@
+@import '../../../../styles/variables';
+
+.update-campaigns-modal-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.update-campaigns-modal-container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  min-width: $campaigns-create-update-modal-size;
+}

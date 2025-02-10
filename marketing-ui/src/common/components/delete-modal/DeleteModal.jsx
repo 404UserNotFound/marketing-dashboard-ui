@@ -1,4 +1,5 @@
 import {Button, Modal, Typography} from "@mui/material";
+import "./DeleteModal.scss"
 
 export default function DeleteModal(props) {
     const {
@@ -8,12 +9,13 @@ export default function DeleteModal(props) {
         onConfirmClick
     } = props;
 
-    return (<div>
+    return (
         <Modal
+            className="delete-modal-background"
             open={open}
             onClose={closeModal}
         >
-            <div>
+            <div className="delete-modal-container">
                 <Typography>Are you sure you wish to delete the "{name}" entry?</Typography>
                 <Button
                     onClick={closeModal}
@@ -26,6 +28,6 @@ export default function DeleteModal(props) {
             </div>
 
         </Modal>
-    </div>)
+    )
 
 }

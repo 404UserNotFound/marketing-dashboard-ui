@@ -5,6 +5,7 @@ import DeleteModal from "../../../common/components/delete-modal/DeleteModal.jsx
 import UpdateModal from "../marketing_channels_modals/marketing_channel_update_modal/MarketingChannelUpdateModal.jsx";
 import {useDispatch} from "react-redux";
 import {deleteChannel} from "../../../redux/thunks/channelThunks.js";
+import "./MarketingChannelsListItem.scss"
 
 export default function MarketingChannelsListItem(props) {
     const {
@@ -26,8 +27,9 @@ export default function MarketingChannelsListItem(props) {
 
 
     return (<>
-        <Card>
-            <Typography>{channels.name}</Typography>
+        <Card className="channel-card">
+            <Typography color="grey" variant="h6">{channels.name}</Typography>
+            <div className="channel-actions">
             <IconButton
                 style={"edit"}
                 onClick={() => {
@@ -40,6 +42,7 @@ export default function MarketingChannelsListItem(props) {
                     setOpenDeleteModal(true)
                 }}
             />
+            </div>
         </Card>
         <DeleteModal
             open={openDeleteModal}

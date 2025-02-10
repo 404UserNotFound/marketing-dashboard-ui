@@ -1,0 +1,14 @@
+.delete-modal-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-modal-container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  min-width: 550px;
+  min-height: 100px;
+}
