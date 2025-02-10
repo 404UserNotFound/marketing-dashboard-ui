@@ -1,0 +1,13 @@
+.channels-list-grid{
+  display: grid;
+  grid-column-gap: 60px;
+  grid-template-columns: repeat(auto-fit, 125px);
+  margin-top: 10vh;
+  margin-left: 15px;
+}
+
+.stack-create-button-label{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

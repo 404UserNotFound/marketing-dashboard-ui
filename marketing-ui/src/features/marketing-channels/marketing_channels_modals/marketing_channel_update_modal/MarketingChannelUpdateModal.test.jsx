@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import MarketingChannelUpdateModal from "./MarketingChannelUpdateModal.jsx";
-import {emptyChannelStore, singleChannelResponse} from "../../../../tests/testData.js";
+import {emptyChannelStore, singleChannelResponse} from "../../../../test/testData.js";
 import {Provider} from "react-redux";
 
 

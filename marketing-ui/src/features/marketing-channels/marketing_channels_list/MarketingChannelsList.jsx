@@ -4,6 +4,8 @@ import MarketingChannelCreateModal from "../marketing_channels_modals/marketing_
 import ColouredIconButton from "../../../common/components/coloured-icon-button/ColouredIconButton.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchChannels} from "../../../redux/thunks/channelThunks.js";
+import "./MarketingChannelsList.scss"
+import {Typography} from "@mui/material";
 
 export default function MarketingChannelsList() {
     const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -22,15 +24,20 @@ export default function MarketingChannelsList() {
     if (channelRequestStatus === "failed") return <p>Error: {channelError}</p>;
 
     return (<>
+        <div className="stack-create-button-label">
+        <ColouredIconButton
+            style={"create"}
+            onClick={() => setOpenCreateModal(true)}/>
+        <Typography color="grey" variant="h6" onClick={() => setOpenCreateModal(true)}>Create</Typography>
+        </div>
+        <div className="channels-list-grid">
         {channelList.map((item) => (
             <MarketingChannelsListItem
             channels={item}
             key={item.channelId}
             refreshChannelList={()=>refreshList()}
         />))}
-        <ColouredIconButton
-            style={"create"}
-            onClick={() => setOpenCreateModal(true)}/>
+        </div>
         <MarketingChannelCreateModal
             open={openCreateModal}
             closeModal={() => {

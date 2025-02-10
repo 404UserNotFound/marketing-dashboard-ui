@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import MarketingChannelCreateModal from "./MarketingChannelCreateModal.jsx";
 import {Provider} from "react-redux";
-import {emptyChannelStore} from "../../../../tests/testData.js";
+import {emptyChannelStore} from "../../../../test/testData.js";
 
 
 describe("MarketingChannelCreateModal", () => {

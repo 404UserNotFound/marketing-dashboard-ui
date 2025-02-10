@@ -10,8 +10,9 @@ export default function NavTab() {
     const currentTab = tabRoutes.indexOf(location.pathname);
 
     return (
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box>
             <Tabs
+                orientation="vertical"
                 value={currentTab !== -1 ? currentTab : 0}
                 onChange={(event, newValue) => navigate(tabRoutes[newValue])}
             >
