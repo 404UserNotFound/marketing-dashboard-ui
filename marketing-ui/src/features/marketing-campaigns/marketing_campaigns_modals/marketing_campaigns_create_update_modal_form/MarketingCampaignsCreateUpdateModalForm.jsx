@@ -1,7 +1,8 @@
 import {Button, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getRequest} from "../../../../common/util/Fetch.js";
-import {CHANNELS_URL} from "../../../../common/util/constants.js";
+import {CAMPAIGN_STATUS_DROPDOWN_OPTIONS, CHANNELS_URL} from "../../../../common/util/constants.js";
+import "./MarketingCampaginsCreateUpdateModalForm.scss";
 
 export default function MarketingCampaignsCreateUpdateModalForm(props) {
     const {
@@ -10,6 +11,7 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
         setCampaignToSubmit,
         campaignToSubmit
     } = props;
+
 
     const [selectedChannel, setSelectedChannel] = useState([])
     const [channelsList, setChannelsList] = useState()
@@ -26,11 +28,11 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
     }, []);
 
     return (
-        <form>
+        <form className="form-container">
             {/*Name*/}
             <TextField
                 required={true}
-                label={"name"}
+                label={"Name"}
                 value={campaignToSubmit.campaignName}
                 onChange={(e) =>
                     setCampaignToSubmit(prev => ({
@@ -44,12 +46,12 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
                     required={true}
                     multiple
                     variant={"filled"}
-                    value={selectedChannel}
+                    value={campaignToSubmit.channelId}
                     onChange={(e) => setSelectedChannel(e.target.value)}
                     onClose={() => setCampaignToSubmit(prev => ({
                         ...prev, channelId: selectedChannel
                     }))}
-                    input={<OutlinedInput label="Name" />}
+                    input={<OutlinedInput label="Channels" />}
                  >
                     {channelsList?.map((channel) => (
                         <MenuItem
@@ -83,17 +85,33 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
                 }))}/>
 
             {/*Campaign Status*/}
-            <TextField
-                required={true}
-                label={"Campaign Status"}
-                value={campaignToSubmit.campaignStatus}
-                onChange={(e) => setCampaignToSubmit(prev => ({
-                    ...prev, campaignStatus: e.target.value
-                }))}/>
+            <FormControl sx={{minWidth: 200}}>
+                <InputLabel>Campaign Status</InputLabel>
+                <Select
+                    required={true}
+                    variant={"filled"}
+                    value={campaignToSubmit.campaignStatus}
+                    onChange={(e) => setCampaignToSubmit(prev => ({
+                        ...prev, campaignStatus: e.target.value
+                    }))}
+                    input={<OutlinedInput label="Campaign Status"/>}
+                >
+                    {CAMPAIGN_STATUS_DROPDOWN_OPTIONS.map((status) => (
+                        <MenuItem
+                            key={status}
+                            value={status}
+                        >
+                            {status}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
             {/*Start Date*/}
             <TextField
+                slotProps={{ inputLabel: { shrink: true }}}
                 required={true}
+                placeholder={"YYYY-MM-DD"}
                 label={"Start Date"}
                 value={campaignToSubmit.campaignStartDate}
                 onChange={(e) => setCampaignToSubmit(prev => ({
@@ -103,6 +121,8 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
 
             {/*End Date*/}
             <TextField
+                slotProps={{ inputLabel: { shrink: true }}}
+                placeholder={"YYYY-MM-DD"}
                 label={"End Date"}
                 value={campaignToSubmit?.campaignEndDate}
                 onChange={(e) => setCampaignToSubmit(prev => ({
