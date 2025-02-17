@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import MarketingChannelCreateModal from "./MarketingChannelCreateModal.jsx";
 import {Provider} from "react-redux";
-import {emptyChannelStore} from "../../../../test/testData.js";
+import {emptyMockStore} from "../../../../test/testData.js";
 
 
 describe("MarketingChannelCreateModal", () => {
@@ -11,7 +11,7 @@ describe("MarketingChannelCreateModal", () => {
         const refreshListMock = vi.fn();
 
         render(
-            <Provider store={emptyChannelStore}>
+            <Provider store={emptyMockStore}>
                 <MarketingChannelCreateModal
                     open={true}
                     closeModal={handleCloseMock()}
@@ -34,7 +34,7 @@ describe("MarketingChannelCreateModal", () => {
         const refreshListMock = vi.fn();
 
         render(
-            <Provider store={emptyChannelStore}>
+            <Provider store={emptyMockStore}>
                 <MarketingChannelCreateModal
                     open={true}
                     closeModal={handleCloseMock()}

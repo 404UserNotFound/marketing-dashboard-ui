@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
-import {emptyCampaignStore} from "../../../../test/testData.js";
+import {emptyMockStore} from "../../../../test/testData.js";
 import MarketingCampaignsCreateModal from "./MarketingCampaignsCreateModal.jsx";
 
 
@@ -11,7 +11,7 @@ describe("MarketingCampaignsCreateModal", () => {
         const refreshListMock = vi.fn();
 
         render(
-            <Provider store={emptyCampaignStore}>
+            <Provider store={emptyMockStore}>
                 <MarketingCampaignsCreateModal
                     closeModal={handleCloseMock}
                     open={true}
