@@ -30,6 +30,11 @@ export default function MarketingCampaignsCreateModal(props) {
         refreshList()
     }
 
+    function handleClose() {
+        setNewCampaign(initialCampaign)
+        closeModal()
+    }
+
     return (
         <Modal
             className="create-campaigns-modal-background"
@@ -41,8 +46,8 @@ export default function MarketingCampaignsCreateModal(props) {
             >
             <Typography variant="h6">Create Campaign</Typography>
             <MarketingCampaignsCreateUpdateModalForm
-                handleConfirm={()=>createNewCampaign(newCampaign).then(closeModal)}
-                handleCancelClick={closeModal}
+                handleConfirm={()=>createNewCampaign(newCampaign).then(handleClose)}
+                handleCancelClick={handleClose}
                 setCampaignToSubmit={setNewCampaign}
                 campaignToSubmit={newCampaign}
             />

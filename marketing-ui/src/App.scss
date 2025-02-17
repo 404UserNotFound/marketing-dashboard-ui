@@ -1,19 +1,20 @@
 .app-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .navtab-container {
   width: 200px;
-  background-color: lightgray;
+  background-color: #1f1f1f;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .content-container {
   flex-grow: 1;
   padding: 20px;
+  background: #181818;
 }

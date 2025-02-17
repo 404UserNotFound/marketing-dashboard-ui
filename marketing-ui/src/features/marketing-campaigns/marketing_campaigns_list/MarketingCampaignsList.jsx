@@ -5,7 +5,6 @@ import MarketingCampaignsCreateModal
     from "../marketing_campaigns_modals/marketing_campaigns_create_modal/MarketingCampaignsCreateModal.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCampaigns} from "../../../redux/thunks/campaignThunks.js";
-import {Typography} from "@mui/material";
 import "./MarketingCampaignsList.scss"
 
 export default function MarketingCampaignsList() {
@@ -31,7 +30,6 @@ export default function MarketingCampaignsList() {
                 <ColouredIconButton
                     style={"create"}
                     onClick={() => setOpenCreateModal(true)}/>
-                <Typography color="grey" variant="h6" onClick={() => setOpenCreateModal(true)}>Create</Typography>
             </div>
             <div className="campaigns-list-grid">
                 {campaignList.map((campaign) => (<MarketingCampaignsListItem

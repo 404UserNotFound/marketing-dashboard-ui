@@ -13,9 +13,15 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
     } = props;
 
 
-    const [selectedChannel, setSelectedChannel] = useState([])
-    const [channelsList, setChannelsList] = useState()
+    const [channelsList, setChannelsList] = useState([]);
 
+    function handleChannelSelect(event) {
+        const selectedValues = event;
+        setCampaignToSubmit(prev => ({
+            ...prev,
+            channelId: selectedValues
+        }));
+    }
 
     useEffect(() => {
         getRequest(CHANNELS_URL)
@@ -46,11 +52,9 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
                     required={true}
                     multiple
                     variant={"filled"}
-                    value={campaignToSubmit.channelId}
-                    onChange={(e) => setSelectedChannel(e.target.value)}
-                    onClose={() => setCampaignToSubmit(prev => ({
-                        ...prev, channelId: selectedChannel
-                    }))}
+                    value={campaignToSubmit.channelId || []}
+                    onChange={(event) => handleChannelSelect(event.target.value)}
+
                     input={<OutlinedInput label="Channels" />}
                  >
                     {channelsList?.map((channel) => (
@@ -75,7 +79,7 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
 
             {/*Budget*/}
             <TextField
-                slotProps={{ inputLabel: { shrink: true }}}
+                slotProps={{inputLabel: {shrink: true}}}
                 required={true}
                 label={"Budget"}
                 type={"number"}
@@ -121,7 +125,7 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
 
             {/*End Date*/}
             <TextField
-                slotProps={{ inputLabel: { shrink: true }}}
+                slotProps={{inputLabel: {shrink: true}}}
                 placeholder={"YYYY-MM-DD"}
                 label={"End Date"}
                 value={campaignToSubmit?.campaignEndDate}
@@ -129,16 +133,16 @@ export default function MarketingCampaignsCreateUpdateModalForm(props) {
                     ...prev, campaignEndDate: e.target.value
                 }))}
             />
-
-            <Button
-                onClick={() => handleCancelClick()}
-            >Cancel
-            </Button>
-            <Button
-                onClick={() => {
-                    handleConfirm(campaignToSubmit)
-                }}
-            >Confirm</Button>
-        </form>
-    )
+            <div>
+                <Button
+                    onClick={() => handleCancelClick()}
+                >Cancel
+                </Button>
+                <Button
+                    onClick={() => {
+                        handleConfirm(campaignToSubmit)
+                    }}
+                >Confirm</Button>
+            </div>
+        </form>)
 };
