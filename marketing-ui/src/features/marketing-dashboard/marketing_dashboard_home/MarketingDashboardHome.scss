@@ -1,0 +1,31 @@
+.dashboard-content-grid {
+  display: grid;
+  grid-column-gap: 300px;
+  grid-template-columns: repeat(auto-fit, 300px);
+}
+
+.marketing-dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+
+  .chart-container {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .horizontal-chart {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    .horizontal-chart {
+      grid-column: span 1;
+    }
+  }
+}

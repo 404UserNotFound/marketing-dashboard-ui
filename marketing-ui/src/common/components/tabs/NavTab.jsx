@@ -16,9 +16,9 @@ export default function NavTab() {
                 value={currentTab !== -1 ? currentTab : 0}
                 onChange={(event, newValue) => navigate(tabRoutes[newValue])}
             >
-                <Tab label="Home" />
-                <Tab label="Campaigns" />
-                <Tab label="Channels" />
+                <Tab label={<span style={{color: "white"}}>Home</span>}/>
+                <Tab label={<span style={{color: "white"}}>Campaigns</span>}/>
+                <Tab label={<span style={{color: "white"}}>Channels</span>}/>
             </Tabs>
         </Box>
     );
