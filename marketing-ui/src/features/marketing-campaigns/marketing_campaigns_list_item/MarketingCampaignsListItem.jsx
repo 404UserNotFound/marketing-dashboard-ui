@@ -6,6 +6,7 @@ import MarketingCampaignsUpdateModal
     from "../marketing_campaigns_modals/marketing_campaigns_update_modal/MarketingCampaignsUpdateModal.jsx";
 import {useDispatch} from "react-redux";
 import {deleteCampaign} from "../../../redux/thunks/campaignThunks.js";
+import "./MarketingCampaignsListItem.scss"
 
 export default function MarketingCampaignsListItem(props) {
     const {
@@ -35,26 +36,34 @@ export default function MarketingCampaignsListItem(props) {
     }
 
     return (<>
-        <Card>
-            <Typography>{campaignName}</Typography>
+        <Card className="campaign-card">
+            <div className={"campaign-details"}>
+            <Typography variant="h6" color="teal">{campaignName}</Typography>
             <Typography>{campaignDescription}</Typography>
-            {channelNames.map((channelName)=> <Typography key={channelName}>{channelName}</Typography>)}
-            <Typography>{campaignStatus}</Typography>
-            <Typography>{campaignBudget}</Typography>
-            <Typography>{campaignStartDate}</Typography>
-            <Typography>{campaignEndDate}</Typography>
-            <IconButton
-                style={"edit"}
-                onClick={() => {
-                    setOpenUpdateModal(true)
-                }}
-            />
-            <IconButton
-                style={"delete"}
+            {channelNames.map((channelName)=> <Typography variant="h7" key={channelName}>{channelName}</Typography>)}
+            </div>
+            <div className="campaign-chips">
+                <div className="chip-item">{campaignStatus}</div>
+                <div className="chip-item">€ {campaignBudget}</div>
+                <div className="chip-item">{campaignStartDate}</div>
+                <div className="chip-item">{campaignEndDate}</div>
+            </div>
+            <div className={"campaign-actions"}>
+                <IconButton
+                    classname={"icon-button"}
+                    style={"edit"}
+                    onClick={() => {
+                        setOpenUpdateModal(true)
+                    }}
+                />
+                <IconButton
+                    classname={"icon-button"}
+                    style={"delete"}
                 onClick={() => {
                     setOpenDeleteModal(true)
                 }}
             />
+            </div>
         </Card>
         <MarketingCampaignsUpdateModal
             closeModal={()=>{

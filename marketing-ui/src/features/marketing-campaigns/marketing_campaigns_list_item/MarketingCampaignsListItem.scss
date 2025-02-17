@@ -1,0 +1,45 @@
+.campaign-card {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: 12px 0;
+  width: 500px;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.campaign-details {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.campaign-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.campaign-chips .chip-item {
+  color: #333;
+  padding: 4px 8px;
+  background-color: lightseagreen;
+  border-radius: 4px;
+}
+
+.campaign-actions {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}

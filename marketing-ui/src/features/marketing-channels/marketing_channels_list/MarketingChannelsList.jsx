@@ -5,7 +5,6 @@ import ColouredIconButton from "../../../common/components/coloured-icon-button/
 import {useDispatch, useSelector} from "react-redux";
 import {fetchChannels} from "../../../redux/thunks/channelThunks.js";
 import "./MarketingChannelsList.scss"
-import {Typography} from "@mui/material";
 
 export default function MarketingChannelsList() {
     const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -28,7 +27,6 @@ export default function MarketingChannelsList() {
         <ColouredIconButton
             style={"create"}
             onClick={() => setOpenCreateModal(true)}/>
-        <Typography color="grey" variant="h6" onClick={() => setOpenCreateModal(true)}>Create</Typography>
         </div>
         <div className="channels-list-grid">
         {channelList.map((item) => (

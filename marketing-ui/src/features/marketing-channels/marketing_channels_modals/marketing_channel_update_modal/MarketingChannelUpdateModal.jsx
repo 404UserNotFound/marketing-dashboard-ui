@@ -2,6 +2,7 @@ import {Button, Modal, TextField, Typography} from "@mui/material";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {updateChannel} from "../../../../redux/thunks/channelThunks.js";
+import "./MarketingChannelUpdateModal.scss";
 
 export default function MarketingChannelUpdateModal(props) {
     const {
@@ -17,6 +18,7 @@ export default function MarketingChannelUpdateModal(props) {
 
     const [newChannelValue, setNewChannelValue] = useState(channels);
     const dispatch = useDispatch();
+
     async function channelUpdate() {
         await dispatch(updateChannel(newChannelValue))
         refreshChannelList()
@@ -24,28 +26,33 @@ export default function MarketingChannelUpdateModal(props) {
 
     return (<div>
         <Modal
+            className="modal-background"
             open={open}
             onClose={closeModal}
         >
-            <div>
-                <Typography>Update Channel</Typography>
+            <div className="modal-container">
+                <Typography className="modal-header">Update Channel</Typography>
                 <TextField
+                    className="text-field"
                     label={"Name"}
                     placeholder={name}
                     onChange={(e) => setNewChannelValue(prev => ({
                         ...prev, name: e.target.value
                     }))}
                 ></TextField>
-                <Button
-                    onClick={closeModal}
-                >Cancel
-                </Button>
-                <Button onClick={() => {
-                    channelUpdate(newChannelValue).then(
-                        closeModal
-                    )
-                }}
-                >Confirm</Button>
+
+                <div className="modal-buttons">
+                    <Button
+                        onClick={closeModal}
+                    >Cancel
+                    </Button>
+                    <Button onClick={() => {
+                        channelUpdate(newChannelValue).then(
+                            closeModal
+                        )
+                    }}
+                    >Confirm</Button>
+                </div>
             </div>
 
         </Modal>
