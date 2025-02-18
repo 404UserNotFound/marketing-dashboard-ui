@@ -33,7 +33,7 @@ export default function MarketingChannelsList() {
             <MarketingChannelsListItem
             channels={item}
             key={item.channelId}
-            refreshChannelList={()=>refreshList()}
+            refreshChannelList={refreshList}
         />))}
         </div>
         <MarketingChannelCreateModal
@@ -41,7 +41,7 @@ export default function MarketingChannelsList() {
             closeModal={() => {
                 setOpenCreateModal(false)
             }}
-            refreshChannelList={()=>refreshList()}
+            refreshChannelList={refreshList}
         />
     </>)
 }

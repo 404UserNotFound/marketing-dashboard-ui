@@ -35,12 +35,12 @@ export default function MarketingCampaignsList() {
                 {campaignList.map((campaign) => (<MarketingCampaignsListItem
                     campaignItem={campaign}
                     key={campaign.campaignChannelId}
-                    refreshList={() => refreshList()}
+                    refreshList={refreshList}
                 />))}
             </div>
                 <MarketingCampaignsCreateModal
                     open={openCreateModal}
-                    refreshList={() => refreshList()}
+                    refreshList={refreshList}
                     closeModal={() => {
                         setOpenCreateModal(false)
                     }}
