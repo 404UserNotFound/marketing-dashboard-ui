@@ -1,21 +1,22 @@
-import { describe, it, expect } from "vitest";
+import { describe, it } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import MarketingChannelCreateModal from "./MarketingChannelCreateModal.jsx";
 import {Provider} from "react-redux";
-import {emptyMockStore} from "../../../../test/testData.js";
+import {createTestStore} from "../../../../test/testData.js";
 
 
 describe("MarketingChannelCreateModal", () => {
     it("checks modal elements are visible and that cancel button calls closeModal", () => {
         const handleCloseMock = vi.fn();
         const refreshListMock = vi.fn();
+        const store = createTestStore({})
 
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <MarketingChannelCreateModal
                     open={true}
-                    closeModal={handleCloseMock()}
-                    refreshChannelList={refreshListMock()}
+                    closeModal={handleCloseMock}
+                    refreshChannelList={refreshListMock}
                 />
             </Provider>)
 
@@ -29,22 +30,30 @@ describe("MarketingChannelCreateModal", () => {
         expect(handleCloseMock).toHaveBeenCalledTimes(1);
     });
 
-    it("refreshes list of channels and dismisses modal when confirm button is clicked", () => {
+    it("refreshes list of channels and dismisses modal when confirm button is clicked", async () => {
         const handleCloseMock = vi.fn();
         const refreshListMock = vi.fn();
+        const store = createTestStore({})
+        const dispatchSpy = vi.spyOn(store, 'dispatch').mockImplementation(() => {
+        });
 
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <MarketingChannelCreateModal
                     open={true}
-                    closeModal={handleCloseMock()}
-                    refreshChannelList={refreshListMock()}
+                    closeModal={handleCloseMock}
+                    refreshChannelList={refreshListMock}
                 />
             </Provider>)
 
-        const confirmButton = screen.getByRole("button", {name: "Confirm"});
+        const nameField = screen.getByTestId("channel-name-input").querySelector('input')
+        fireEvent.change(nameField, {target: {value: 'New Test Channel'}})
 
+        const confirmButton = screen.getByRole("button", {name: "Confirm"});
         fireEvent.click(confirmButton);
+        await new Promise((resolve) => setTimeout(resolve, 0));
+
+        expect(dispatchSpy).toHaveBeenCalled();
         expect(refreshListMock).toHaveBeenCalledTimes(1);
         expect(handleCloseMock).toHaveBeenCalledTimes(1);
     });

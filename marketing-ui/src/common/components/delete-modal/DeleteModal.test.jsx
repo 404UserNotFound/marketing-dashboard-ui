@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import DeleteModal from "./DeleteModal.jsx";
-import {emptyMockStore} from "../../../test/testData.js";
+import {createTestStore} from "../../../test/testData.js";
 
 
 describe("DeleteModal", () => {
@@ -14,8 +14,9 @@ describe("DeleteModal", () => {
     });
 
     it("renders correctly with given name", () => {
+        const store = createTestStore({})
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <DeleteModal
                     open={true}
                     closeModal={closeModalMock}
@@ -29,8 +30,9 @@ describe("DeleteModal", () => {
     });
 
     it("calls closeModal when Cancel button is clicked", () => {
+        const store = createTestStore({})
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <DeleteModal
                     open={true}
                     closeModal={closeModalMock}
@@ -47,8 +49,10 @@ describe("DeleteModal", () => {
     });
 
     it("calls onConfirmClick when Confirm button is clicked", () => {
+        const store = createTestStore({})
+
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <DeleteModal
                     open={true}
                     closeModal={closeModalMock}
@@ -64,9 +68,11 @@ describe("DeleteModal", () => {
         expect(confirmClickMock).toHaveBeenCalled();
     });
 
-    test("does not render modal when open is false", () => {
+    it("does not render modal when open is false", () => {
+        const store = createTestStore({})
+
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <DeleteModal
                     open={false}
                     closeModal={closeModalMock}

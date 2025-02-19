@@ -28,6 +28,7 @@ export default function MarketingChannelCreateModal(props) {
                 <div className="modal-container">
                     <Typography className="modal-header">Create New Channel</Typography>
                     <TextField
+                        data-testid={"channel-name-input"}
                         className="text-field"
                         label={"Name"}
                         required

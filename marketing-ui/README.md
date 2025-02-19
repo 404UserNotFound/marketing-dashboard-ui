@@ -1,8 +1,14 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Node v18.18.0
 
-Currently, two official plugins are available:
+NPM v9.8.1
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run application locally:
+* Ensure marketing-dashboard Spring app is running
+* Open terminal
+* cd 'marketing-ui'
+* npm run dev
+
+To run all tests:
+* npm test

@@ -1,17 +1,18 @@
-import { describe, it, expect } from "vitest";
+import { describe, it } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
-import {emptyMockStore} from "../../../../test/testData.js";
 import MarketingCampaignsCreateModal from "./MarketingCampaignsCreateModal.jsx";
+import {createTestStore} from "../../../../test/testData.js";
 
 
 describe("MarketingCampaignsCreateModal", () => {
     it("checks modal contents are visible and closeModal is called on cancel", () => {
         const handleCloseMock = vi.fn();
         const refreshListMock = vi.fn();
+        const store = createTestStore();
 
         render(
-            <Provider store={emptyMockStore}>
+            <Provider store={store}>
                 <MarketingCampaignsCreateModal
                     closeModal={handleCloseMock}
                     open={true}

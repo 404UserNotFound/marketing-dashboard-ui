@@ -46,29 +46,15 @@ export const mockCampaign = {
     "campaignEndDate": "2026-01-01"
 };
 
-export const singleChannelResponse = {"channelId": 1, "name": "Magazine"};
+export const singleChannelResponse = {channelId: 1, name: "Magazine"};
 
-export const emptyMockStore = configureStore({
-    reducer: {
-        channel: channelReducer,
-        campaign: campaignReducer
-    },
-    preloadedState: {
-        channelList: [],
-        channelRequestStatus: "",
-        channelError: null,
-        campaignList: [],
-        campaignRequestStatus: "",
-        campaignError: null
-    },
-});
+export function createTestStore(preloadedState = {}) {
+    return configureStore({
+        reducer: {
+            campaign: campaignReducer,
+            channel: channelReducer
+        },
+        preloadedState,
+    });
+}
 
-export const mockStoreWithCampaignsAndChannels = configureStore({
-    reducer: {
-        campaign: campaignReducer,
-        channel: channelReducer},
-    preloadedState: {
-        campaignList: mockCampaignResponseArray, campaignRequestStatus: "succeeded", campaignError: null,
-        channelList: mockChannelResponse, channelRequestStatus: "succeeded", channelError: null
-    },
-});
