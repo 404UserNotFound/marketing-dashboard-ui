@@ -1,17 +1,22 @@
 import { describe, it } from "vitest";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {Provider} from "react-redux";
-import {mockCampaign} from "../../../../test/testData.js";
+import {mockCampaign, mockChannelResponse} from "../../../../test/testData.js";
 import MarketingCampaignsUpdateModal from "./MarketingCampaignsUpdateModal.jsx";
 import {configureStore} from "@reduxjs/toolkit";
 import campaignReducer from "../../../../redux/reducers/campaignReducer.js";
 import channelReducer from "../../../../redux/reducers/channelReducer.js";
+import * as FetchModule from "../../../../common/util/Fetch.js";
+
+vi.spyOn(FetchModule, "getRequest").mockImplementation(() => Promise.resolve([]));
 
 
 describe("MarketingCampaignsUpdateModal", () => {
     it("checks that campaign details are visible and closeModal is called on cancel", async () => {
         const handleCloseMock = vi.fn();
         const refreshListMock = vi.fn();
+        FetchModule.getRequest.mockResolvedValueOnce(mockChannelResponse);
+
         const store = configureStore({
             reducer: {
                 campaign: campaignReducer,

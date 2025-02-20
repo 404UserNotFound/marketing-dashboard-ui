@@ -2,7 +2,11 @@ import { describe, it } from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 import MarketingCampaignsCreateModal from "./MarketingCampaignsCreateModal.jsx";
-import {createTestStore} from "../../../../test/testData.js";
+import {createTestStore, mockChannelResponse} from "../../../../test/testData.js";
+import * as FetchModule from "../../../../common/util/Fetch.js";
+
+vi.spyOn(FetchModule, "getRequest").mockImplementation(() => Promise.resolve([]));
+
 
 
 describe("MarketingCampaignsCreateModal", () => {
@@ -10,6 +14,7 @@ describe("MarketingCampaignsCreateModal", () => {
         const handleCloseMock = vi.fn();
         const refreshListMock = vi.fn();
         const store = createTestStore();
+        FetchModule.getRequest.mockResolvedValueOnce(mockChannelResponse);
 
         render(
             <Provider store={store}>

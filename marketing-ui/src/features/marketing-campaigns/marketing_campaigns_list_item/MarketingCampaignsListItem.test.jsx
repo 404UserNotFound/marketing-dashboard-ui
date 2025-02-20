@@ -1,15 +1,21 @@
 import { describe, it } from "vitest";
-import {fireEvent, render, screen} from "@testing-library/react";import MarketingCampaignsListItem from "./MarketingCampaignsListItem.jsx";
+import {fireEvent, render, screen} from "@testing-library/react";
+import MarketingCampaignsListItem from "./MarketingCampaignsListItem.jsx";
 import {Provider} from "react-redux";
 import {
     createTestStore,
-    mockCampaign,
+    mockCampaign, mockChannelResponse,
 } from "../../../test/testData.js";
+import * as FetchModule from "../../../common/util/Fetch";
+
+vi.spyOn(FetchModule, "getRequest").mockImplementation(() => Promise.resolve([]));
+
 
 describe("MarketingCampaignsListItem", () => {
     it("renders items correctly", () => {
         const refreshListMock = vi.fn();
         const store = createTestStore({})
+        FetchModule.getRequest.mockResolvedValueOnce(mockChannelResponse);
 
         render(
             <Provider store={store}>
@@ -30,6 +36,7 @@ describe("MarketingCampaignsListItem", () => {
     it("opens update modal when edit button is clicked", () => {
         const refreshListMock = vi.fn();
         const store = createTestStore({})
+        FetchModule.getRequest.mockResolvedValueOnce(mockChannelResponse);
 
         render(
             <Provider store={store}>
@@ -48,6 +55,7 @@ describe("MarketingCampaignsListItem", () => {
     it("opens delete modal when edit button is clicked", () => {
         const refreshListMock = vi.fn();
         const store = createTestStore({})
+        FetchModule.getRequest.mockResolvedValueOnce(mockChannelResponse);
 
         render(
             <Provider store={store}>
